@@ -82,8 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Contracts\IPaymentService.cs" />
-    <Compile Include="Contracts\IUserStore.cs" />
     <Compile Include="Controllers\PaymentServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -108,6 +106,14 @@
     <ProjectReference Include="..\IPPBusinessLogic\IPPBusinessLogic.csproj">
       <Project>{a7d2fa72-5d33-458a-80d4-57a9c005a768}</Project>
       <Name>IPPBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPPContracts\IPPContracts.csproj">
+      <Project>{babf58dc-18dd-4b0d-8f69-f98077241752}</Project>
+      <Name>IPPContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IppDataAccess\IppDataAccess.csproj">
+      <Project>{0c59ce7c-8f58-45fe-948b-44da27f4862a}</Project>
+      <Name>IppDataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -4,28 +4,42 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Ipp.Recruitment;
 using System.Configuration;
 using System.Web;
+using IPPContracts;
 using IPPBusinessLogic;
+using IppDataAccess;
 
 namespace IppWebApi.Controllers
 {
     public class PaymentServiceController : ApiController,IPaymentService
     {
-        
+        //[Dependency]
+        public IUserStore _userStore;
+
+        public PaymentServiceController()
+        {
+            //Dependency Injection & Unit Test Mocking is yet to be implemented. 
+            _userStore = new UserIDFileStore();
+        }
+
         [HttpGet]
         [Route("api/PaymentService/WhatsYourId")]
         public string WhatsYourId()
         {
-            var userId = (string)ConfigurationManager.AppSettings["YourId"];
+            var userId = _userStore.GetUserID();
+            
             if (string.IsNullOrEmpty(userId))
             {
+                ///////No Code Coverage ////////////////
                 throw new HttpException((int)HttpStatusCode.NotFound, "Your UserID not found");
+                ///////No Code Coverage ////////////////
             }
+
             return userId;
         }
 
+        [HttpPost]
         [Route("api/PaymentService/IsCardNumberValid")]
         public bool IsCardNumberValid(string cardNumber)
         {
@@ -38,6 +52,8 @@ namespace IppWebApi.Controllers
             return isCardValid;
         }
 
+        [HttpPost]
+        [Route("api/PaymentService/IsValidPaymentAmount")]
         public bool IsValidPaymentAmount(long amount)
         {
             string errorMessage;
@@ -48,7 +64,7 @@ namespace IppWebApi.Controllers
             }
             return isValidPaymentAmount;
         }
-
+        [HttpPost]
         [Route("api/PaymentService/CanMakePaymentWithCard")]
         public bool CanMakePaymentWithCard(string cardNumber, int expiryMonth, int expiryYear)
         {
