@@ -6,35 +6,32 @@ using System.Threading.Tasks;
 using IPPContracts;
 using System.IO;
 using System.Configuration;
+using System.Web.Hosting;
 
 namespace IppDataAccess
 {
     public class UserIDFileStore : IUserStore
     {
+    
         string IUserStore.GetUserID()
         {
             string userId = string.Empty;
-
-            string userIDStoreFilePath = getDataStorePath();
-          
-            if(File.Exists(userIDStoreFilePath))
+            string resourcePath = GetResourcePath();
+            if (File.Exists(resourcePath))
             {
-                using (var sr = new StreamReader(userIDStoreFilePath))
+                using (var sr = new StreamReader(resourcePath))
                 {
                     userId = sr.ReadToEnd().Trim();
                 }
             }
             return userId;
         }
-        private string getDataStorePath()
+        private string GetResourcePath()
         {
-            string userIDStoreFilePath = string.Empty;
-            var dataStorePath = ConfigurationManager.AppSettings["UserIDStoreFilePath"];
-            if(!string.IsNullOrEmpty(dataStorePath))
-            {
-                 userIDStoreFilePath = dataStorePath.ToString();
-            }
-            return userIDStoreFilePath;
+            string hostPath = HostingEnvironment.MapPath("~");
+            string resourcePath = Path.Combine(hostPath, @"..\IppDataAccess\App_Data\WhatsYourId.txt");
+            return resourcePath;
         }
+        
     }
 }

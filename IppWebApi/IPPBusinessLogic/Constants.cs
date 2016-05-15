@@ -8,13 +8,13 @@ namespace IPPBusinessLogic
 {
     class Constants
     {
-        public static readonly int ValidNumberOfDigits = 16;
-        public static readonly int CheckSumMultiplicant = 9;
-        public static readonly int digitMax = 9;
-        public static readonly int ModByNumber = 10;
+        public const int ValidNumberOfDigits = 16;
+        public const int CheckSumMultiplicant = 9;
+        public const int digitMax = 9;
+        public const int ModByNumber = 10;
 
-        public static readonly long minAmountValue = 99;
-        public static readonly long maxAmountValue = 99999999;
+        public const long minAmountValue = 99;
+        public const long maxAmountValue = 99999999;
 
     }
 }

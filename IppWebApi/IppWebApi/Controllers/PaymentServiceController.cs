@@ -9,6 +9,8 @@ using System.Web;
 using IPPContracts;
 using IPPBusinessLogic;
 using IppDataAccess;
+using System.Web.Hosting;
+using System.IO;
 
 namespace IppWebApi.Controllers
 {
@@ -19,7 +21,7 @@ namespace IppWebApi.Controllers
 
         public PaymentServiceController()
         {
-            //Dependency Injection & Unit Test Mocking is yet to be implemented. 
+            //Dependency Injection is yet to be implemented. 
             _userStore = new UserIDFileStore();
         }
 
@@ -27,15 +29,13 @@ namespace IppWebApi.Controllers
         [Route("api/PaymentService/WhatsYourId")]
         public string WhatsYourId()
         {
+
             var userId = _userStore.GetUserID();
-            
+
             if (string.IsNullOrEmpty(userId))
             {
-                ///////No Code Coverage ////////////////
                 throw new HttpException((int)HttpStatusCode.NotFound, "Your UserID not found");
-                ///////No Code Coverage ////////////////
             }
-
             return userId;
         }
 
@@ -80,5 +80,7 @@ namespace IppWebApi.Controllers
             }
             return canMakePayment;
         }
+
+        
     }
 }
