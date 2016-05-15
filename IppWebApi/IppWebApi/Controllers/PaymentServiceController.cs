@@ -34,7 +34,7 @@ namespace IppWebApi.Controllers
 
             if (string.IsNullOrEmpty(userId))
             {
-                throw new HttpException((int)HttpStatusCode.NotFound, "Your UserID not found");
+                throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.UserIdNotFound);
             }
             return userId;
         }
