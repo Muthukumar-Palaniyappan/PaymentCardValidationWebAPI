@@ -5,3 +5,12 @@
 /IppWebApi/IPPContracts/obj/Debug
 /IppWebApi/packages
 /IppWebApi/IppWebApi.Tests/obj/Debug
+/IppWebApi/IPPBusinessLogic/bin/Debug
+/IppWebApi/IPPBusinessLogic/obj/Debug
+/IppWebApi/IPPContracts/bin/Debug
+/IppWebApi/IppDataAccess/bin/Debug
+/IppWebApi/IppDataAccess/obj/Debug
+/IppWebApi/IppWebApi/bin
+/IppWebApi/IppWebApi/obj/Debug
+/IppWebApi/IppWebApi.Tests/bin/Debug
+/IppWebApi/.vs/config

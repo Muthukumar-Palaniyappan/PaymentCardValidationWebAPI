@@ -13,32 +13,7 @@ namespace IppWebApi.Controllers
 {
     public class PaymentServiceController : ApiController,IPaymentService
     {
-        // GET: api/PaymentService
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/PaymentService/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/PaymentService
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/PaymentService/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/PaymentService/5
-        public void Delete(int id)
-        {
-        }
+        
         [HttpGet]
         [Route("api/PaymentService/WhatsYourId")]
         public string WhatsYourId()
@@ -65,7 +40,13 @@ namespace IppWebApi.Controllers
 
         public bool IsValidPaymentAmount(long amount)
         {
-            throw new NotImplementedException();
+            string errorMessage;
+            bool isValidPaymentAmount = ValidatePayment.ValidatePaymentAmount(amount,out errorMessage);
+            if(!isValidPaymentAmount)
+            {
+                throw new HttpException((int)HttpStatusCode.ExpectationFailed, errorMessage);
+            }
+            return isValidPaymentAmount;
         }
 
         [Route("api/PaymentService/CanMakePaymentWithCard")]

@@ -15,6 +15,7 @@ namespace IPPBusinessLogic
         public static readonly string InvalidCardNumber = "The supplied card number is invalid. Please check.";
         public static readonly string InvalidExpiryDateFormat = "The supplied expiry date is not in a valid format. Please check.";
         public static readonly string InvalidExpiryDate = "The supplied expiry date is not valid. Please check.";
+        public static readonly string InvalidPaymentAmount = "The Specified amount is invlaid. Please Check.";
     }
    
 }
