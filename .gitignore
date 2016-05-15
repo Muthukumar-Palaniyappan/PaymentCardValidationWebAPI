@@ -3,3 +3,5 @@
 ################################################################################
 
 /IppWebApi/IPPContracts/obj/Debug
+/IppWebApi/packages
+/IppWebApi/IppWebApi.Tests/obj/Debug
